@@ -48,6 +48,7 @@
 # define PAL_FILESYSTEM_IGNORE_CASE         1
 # define PAL_HAS_PLATFORM_SPECIFIC_UTILS    1
 # define PAL_HAS_PLATFORM_STARTUP           1
+# define PAL_FORCE_UPDATE_ON_PALETTE_SET
 
 # include <gctypes.h>
 # include <dirent.h>

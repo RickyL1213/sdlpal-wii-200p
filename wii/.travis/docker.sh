@@ -1,4 +1,6 @@
 #!/bin/bash -ex
-source /etc/profile.d/devkit-env.sh
+export DEVKITPRO=/home/travis/devkitPro
+export DEVKITPPC=${DEVKITPRO}/devkitPPC
 export PATH=$DEVKITPPC/bin:$PATH
+make -C /src/wii/SDL
 make -C /src/wii

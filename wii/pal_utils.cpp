@@ -29,11 +29,13 @@
 #include <debug.h>
 #include <errno.h>
 #include <unistd.h>
-#ifdef DEBUG
+#include "SDL_events.h"
 extern "C"{
+#ifdef DEBUG
 # include <net_print.h>
-}
 #endif
+extern void WII_SetDoubleStrikeVideoMode(int xscale, int yscale, int width);
+}
 
 static BOOL isNunChuckConnected(int joystick)
 {
@@ -81,7 +83,7 @@ static int input_event_filter(const SDL_Event *lpEvent, volatile PALINPUTSTATE *
 			state->dir = kDirSouth;
 			state->dwKeyPress = kKeyDown;
 			break;
-			
+
 		case SDL_HAT_CENTERED:
 			state->prevdir = (gpGlobals->fInBattle ? kDirUnknown : state->dir);
 			state->dir = kDirUnknown;
@@ -192,13 +194,13 @@ int UTIL_Platform_Startup(
    if (ret>=0) {
       printf ("\n network configured, ip: %s, gw: %s, mask %s\n", localip, gateway, netmask);
       net_print_init(NULL,0);
-      
+
       printf("net_print_init() called.\n");
       net_print_string(__FILE__,__LINE__, "initial net_print from %s...\n",localip);
 
       DEBUG_Init(100,5656);
       printf("after DEBUG_Init()...\n");
-      
+
       printf("Before _break() is called.\n");
       _break();
       printf("After _break() is called.\n");
@@ -221,6 +223,7 @@ UTIL_Platform_Init(
 #endif
 	PAL_RegisterInputFilter(NULL, input_event_filter, NULL);
 	gConfig.fLaunchSetting = FALSE;
+	WII_SetDoubleStrikeVideoMode(640 >> 1, 480 >> 2, 640);
 	return 0;
 }
 

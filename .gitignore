@@ -282,3 +282,7 @@ emscripten/*.cpp
 
 # macOS Trashes
 *.DS_Store
+
+#wii executable
+/wii/*.dol
+/wii/*.elf
