@@ -5,11 +5,15 @@ Debug requirement: wii_dev_debug
 =================================================
 git clone https://github.com/RickyL1213/sdl-wii.git
 
+cd sdl-wii
+
 git submodule update --init
 
-docker run -dit --name devkit-sdlpal -v $(pwd):/cache -v ~/sdlpal:/src ricky1213/sdlpal-wii-env bash
+cd ..
 
-cd sdlpal/wii
+docker run -dit --name devkit-sdlpal -v $(pwd):/cache -v ~/sdl-wii:/src ricky1213/sdlpal-wii-env bash
+
+cd sdl-wii/wii
 
 docker exec -it devkit-sdlpal /bin/bash -ex /src/wii/.travis/docker.sh
 
