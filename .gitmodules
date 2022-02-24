@@ -10,3 +10,6 @@
 [submodule "scripts"]
 	path = scripts
 	url = ../scripts.git
+[submodule "wii/SDL"]
+	path = wii/SDL
+	url = https://github.com/RickyL1213/sdl-wii
